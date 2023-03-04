@@ -1,6 +1,11 @@
-import {Form} from 'react-router-dom';
+import {Form, useParams} from 'react-router-dom';
 
 export default function Contact() {
+  const params = useParams();
+
+  console.log('ТТТТТ - params');
+  console.table(params);
+
   const contact = {
     first: 'Your',
     last: 'Name',
