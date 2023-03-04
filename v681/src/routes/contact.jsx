@@ -1,19 +1,27 @@
-import {Form, useParams} from 'react-router-dom';
+import {Form, useParams, useLoaderData} from 'react-router-dom';
+import {getContact} from '../contacts';
+
+export async function contactLoader({params}) {
+  const contact = await getContact(params.contactId);
+  return {contact};
+}
 
 export default function Contact() {
   const params = useParams();
+  const {contact} = useLoaderData();
 
-  console.log('ТТТТТ - params');
-  console.table(params);
+  // console.log('%c ||||| loadedData', 'color:yellowgreen', loadedData);
+  console.log('ТТТТТ - contact');
+  console.table(contact);
 
-  const contact = {
-    first: 'Your',
-    last: 'Name',
-    avatar: 'https://placekitten.com/g/200/200',
-    twitter: 'your_handle',
-    notes: 'Some notes',
-    favorite: true,
-  };
+  // const contact = {
+  //   first: 'Your',
+  //   last: 'Name',
+  //   avatar: 'https://placekitten.com/g/200/200',
+  //   twitter: 'your_handle',
+  //   notes: 'Some notes',
+  //   favorite: true,
+  // };
 
   return (
     <div id='contact'>
